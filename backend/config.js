@@ -5,12 +5,10 @@
 require("dotenv").config();
 require("colors");
 
-const XRapidAPIHost = "spoonacular-recipe-food-nutrition-v1.p.rapidapi.com";
-const XRapidAPIKey = "2411e56e43msh71b4ae853df721bp1e6c11jsnf329ba47def7";
-
 const SECRET_KEY = process.env.SECRET_KEY || "secret-dev";
-
-const PORT = +process.env.PORT || 3001;
+const PORT = + process.env.PORT || 3001;
+const X_APP_KEY='1a455483a83a17fd9d4e6f52f1338191'; 
+const X_APP_ID='204bfe92';
 
 // Use dev database, testing database, or via env var, production database
 function getDatabaseUri() {
@@ -36,6 +34,6 @@ module.exports = {
   PORT,
   BCRYPT_WORK_FACTOR,
   getDatabaseUri,
-  XRapidAPIHost,
-  XRapidAPIKey
+  X_APP_ID,
+  X_APP_KEY
 };
