@@ -13,7 +13,7 @@ const X_APP_ID='204bfe92';
 // Use dev database, testing database, or via env var, production database
 function getDatabaseUri() {
   return (process.env.NODE_ENV === "test")
-      ? "jobly_test"
+      ? "macro_friend_test"
       : process.env.DATABASE_URL || "macro_friend";
 }
 

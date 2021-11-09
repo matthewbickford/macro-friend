@@ -15,4 +15,4 @@ DROP DATABASE macro_friend_test;
 CREATE DATABASE macro_friend_test;
 \connect macro_friend_test
 
-\i macro-friend-schema.sqlmac
+\i macro-friend-schema.sql
