@@ -73,14 +73,15 @@ class User {
 
     const result = await db.query(
           `INSERT INTO users
-           (username,
-            password,
-            first_name,
-            last_name,
-            email,
-            is_admin)
+            (username,
+              password,
+              first_name,
+              last_name,
+              email,
+              is_admin)
            VALUES ($1, $2, $3, $4, $5, $6)
-           RETURNING username, first_name AS "firstName", last_name AS "lastName", email, is_admin AS "isAdmin"`,
+           RETURNING 
+          username, first_name AS "firstName", last_name AS "lastName", email, is_admin AS "isAdmin"`,
         [
           username,
           hashedPassword,
@@ -204,35 +205,35 @@ class User {
     if (!user) throw new NotFoundError(`No user: ${username}`);
   }
 
-  /** Apply for job: update db, returns undefined.
+  /** Select food for log: update db, returns undefined.
    *
-   * - username: username applying for job
-   * - jobId: job id
+   * - username: username of current user selecting food
+   * - foodId: food id
    **/
 
-  static async applyToJob(username, jobId) {
+  static async selectFood(username, foodId) {
     const preCheck = await db.query(
-          `SELECT id
-           FROM jobs
-           WHERE id = $1`, [jobId]);
-    const job = preCheck.rows[0];
+      `SELECT id
+       FROM foods
+       WHERE id = $1`, [foodId]);
+    const food = preCheck.rows[0];
 
-    if (!job) throw new NotFoundError(`No job: ${jobId}`);
+    if (!food) throw new NotFoundError(`No food with id ${foodId}`);
 
     const preCheck2 = await db.query(
-          `SELECT username
-           FROM users
-           WHERE username = $1`, [username]);
+      `SELECT username
+       FROM users
+       WHERE username = $1`, [username]);
     const user = preCheck2.rows[0];
 
     if (!user) throw new NotFoundError(`No username: ${username}`);
 
     await db.query(
-          `INSERT INTO applications (job_id, username)
-           VALUES ($1, $2)`,
-        [jobId, username]);
-  }
-}
+      `INSERT INTO user_foods (username, food_id)
+       VALUES ($1, $2)`, [username, foodId]);
+  };
+
+};
 
 
 module.exports = User;

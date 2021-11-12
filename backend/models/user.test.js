@@ -5,6 +5,7 @@ const {
   BadRequestError,
   UnauthorizedError,
 } = require("../expressError");
+
 const db = require("../db.js");
 const User = require("./user.js");
 const {
@@ -12,13 +13,14 @@ const {
   commonBeforeEach,
   commonAfterEach,
   commonAfterAll,
-  testJobIds,
+  testFoodIds
 } = require("./_testCommon");
 
 beforeAll(commonBeforeAll);
 beforeEach(commonBeforeEach);
 afterEach(commonAfterEach);
 afterAll(commonAfterAll);
+
 
 /************************************** authenticate */
 
@@ -52,6 +54,7 @@ describe("authenticate", function () {
     }
   });
 });
+
 
 /************************************** register */
 
@@ -106,6 +109,7 @@ describe("register", function () {
   });
 });
 
+
 /************************************** findAll */
 
 describe("findAll", function () {
@@ -130,6 +134,7 @@ describe("findAll", function () {
   });
 });
 
+
 // /************************************** get */
 
 describe("get", function () {
@@ -153,6 +158,7 @@ describe("get", function () {
     }
   });
 });
+
 
 // /************************************** update */
 
@@ -210,6 +216,7 @@ describe("update", function () {
   });
 });
 
+
 // /************************************** remove */
 
 describe("remove", function () {
@@ -229,4 +236,20 @@ describe("remove", function () {
     }
   });
 });
+
+
+// /************************************** remove */
+
+describe("selectFood", function () {
+  test("works", async function () {
+    await User.selectFood("u1", testFoodIds[1])
+    const result = await db.query(
+      "SELECT * FROM user_foods WHERE food_id = $1", [testFoodIds[1]]);
+    expect(result.rows).toEqual([{
+      food_id: testFoodIds[1],
+      username: "u1"
+    }]);
+  });
+});
+
 

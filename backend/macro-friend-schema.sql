@@ -7,3 +7,23 @@ CREATE TABLE users (
     CHECK (position('@' IN email) > 1),
   is_admin BOOLEAN NOT NULL DEFAULT FALSE
 );
+
+CREATE TABLE foods (
+  id SERIAL PRIMARY KEY,
+  food_name TEXT NOT NULL NOT NULL,
+  serving_unit TEXT,
+  serving_weight_grams NUMERIC,
+  nf_calories NUMERIC,
+  nf_total_fat NUMERIC,
+  nf_total_carbohydrate NUMERIC,
+  nf_protein NUMERIC,
+  thumb TEXT
+);
+
+CREATE TABLE user_foods (
+  username VARCHAR(25)
+    REFERENCES users ON DELETE CASCADE,
+  food_id INTEGER
+    REFERENCES foods ON DELETE CASCADE,
+  PRIMARY KEY (username, food_id)
+);
