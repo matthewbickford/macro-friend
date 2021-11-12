@@ -48,6 +48,7 @@ async function commonAfterEach() {
 }
 
 async function commonAfterAll() {
+  await db.query("DELETE FROM users");
   try {
     await db.end();
     console.log("DB has disconnected")

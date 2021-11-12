@@ -16,6 +16,7 @@ const headers = {
     }
 };
 
+// Retreives nutritional information for food items once the name is known
 
 router.get("/nutrition/:food", async function (req, res, next) {
     try {
@@ -25,12 +26,13 @@ router.get("/nutrition/:food", async function (req, res, next) {
             "https://trackapi.nutritionix.com/v2/natural/nutrients", 
             data,
             headers )
-        res.json(result.data);
+        return res.status(201).json(result.data);
     } catch (err) {
         return next(err)
     }
 });
 
+// Retreives a list of good items based on search term
 
 router.get("/items/:term", async function (req, res, next) {
     try {
@@ -38,7 +40,7 @@ router.get("/items/:term", async function (req, res, next) {
         let result = await axios.get(
             `https://trackapi.nutritionix.com/v2/search/instant?query=%22${term}%22`,
             headers )
-        res.json(result.data);
+        return res.status(201).json(result.data);
     } catch (err) {
         return next(err)
     }
