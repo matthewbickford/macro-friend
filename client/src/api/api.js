@@ -41,12 +41,6 @@ class MacroFriendApi {
     return res.user;
   }
 
-  /** Apply to a job */
-
-  static async applyToJob(username, id) {
-    await this.request(`users/${username}/jobs/${id}`, {}, "post");
-  }
-
   /** Get token for login from username, password. */
 
   static async login(data) {

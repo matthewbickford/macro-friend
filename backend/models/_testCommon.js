@@ -7,6 +7,8 @@ const testFoodIds = [];
 
 async function commonBeforeAll() {
 
+  console.log(process.env);
+
   // noinspection SqlWithoutWhere
   await db.query("DELETE FROM users");
   await db.query("DELETE FROM foods");
