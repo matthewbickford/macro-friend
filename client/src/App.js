@@ -10,7 +10,7 @@ import UserContext from "./auth/UserContext";
 
 
 // Key name for storing token in localStorage for "remember me" re-login
-export const TOKEN_STORAGE_ID = "jobly-token";
+export const TOKEN_STORAGE_ID = "macroFriend-token";
 
 /** Macro Friend application.
  *
@@ -117,7 +117,7 @@ function App() {
           value={{ currentUser, setCurrentUser }}>
         <div className="App">
           <Navigation logout={logout} />
-          <Routes login={login} signup={signup} />
+          <Routes login={login} signup={signup} logout={logout} />
         </div>
       </UserContext.Provider>
     </BrowserRouter>

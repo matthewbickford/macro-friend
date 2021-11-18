@@ -11,7 +11,7 @@ import "./Navigation.css";
  * Rendered by App.
  */
 
-function Navigation({ logout }) {
+function Navigation() {
   const { currentUser } = useContext(UserContext);
   console.debug("Navigation", "currentUser=", currentUser);
 
@@ -19,8 +19,13 @@ function Navigation({ logout }) {
     return (
         <ul className="navbar-nav ml-auto">
           <li className="nav-item mr-4">
-            <NavLink className="nav-link" to="/reg">
-              Registraion Page
+            <NavLink className="nav-link" to="/logout">
+              Logout
+            </NavLink>
+          </li>
+          <li className="nav-item mr-4">
+            <NavLink className="nav-link" to="/search">
+              Search
             </NavLink>
           </li>
           <li className="nav-item mr-4">

@@ -13,8 +13,8 @@ import Alert from "../common/Alert";
  * Routed as /login
  */
 
-function LoginForm({ login }) {
-  const history = useHistory();
+function LoginForm( { login } ) {
+  const histroy = useHistory();
   const [formData, setFormData] = useState({
     username: "",
     password: "",
@@ -37,7 +37,7 @@ function LoginForm({ login }) {
     evt.preventDefault();
     let result = await login(formData);
     if (result.success) {
-      history.push("/companies");
+      histroy.push("/companies");
     } else {
       setFormErrors(result.errors);
     }

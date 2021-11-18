@@ -14,7 +14,7 @@ import Alert from "../common/Alert";
  */
 
 function SignupForm({ signup }) {
-  const history = useHistory();
+  const histroy = useHistory();
   const [formData, setFormData] = useState({
     username: "",
     password: "",
@@ -40,7 +40,7 @@ function SignupForm({ signup }) {
     evt.preventDefault();
     let result = await signup(formData);
     if (result.success) {
-      history.push("/companies");
+      histroy.push("/companies");
     } else {
       setFormErrors(result.errors);
     }

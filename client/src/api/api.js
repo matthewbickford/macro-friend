@@ -11,7 +11,8 @@ const BASE_URL = process.env.REACT_APP_BASE_URL || "http://localhost:3001";
  */
 
 class MacroFriendApi {
-  // the token for interactive with the API will be stored here.
+  
+  // the token for interaction with the API will be stored here.
   static token;
 
   static async request(endpoint, data = {}, method = "get") {
