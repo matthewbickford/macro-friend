@@ -62,6 +62,13 @@ class MacroFriendApi {
     let res = await this.request(`users/${username}`, data, "patch");
     return res.user;
   }
+
+  /** Retreive a list of foods based on a search term */
+
+  static async getFoods(term) {
+    let res = await this.request(`search/items/${term}`)
+    return res;
+  }
 }
 
 

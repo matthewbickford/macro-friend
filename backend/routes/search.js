@@ -40,7 +40,7 @@ router.get("/items/:term", async function (req, res, next) {
         let result = await axios.get(
             `https://trackapi.nutritionix.com/v2/search/instant?query=%22${term}%22`,
             headers )
-        return res.status(201).json(result.data);
+        return res.status(201).json(result.data.common);
     } catch (err) {
         return next(err)
     }

@@ -3,7 +3,7 @@ import { Switch, Route, Redirect } from "react-router-dom";
 import Homepage from "../homepage/Homepage";
 import LoginForm from "../auth/LoginForm";
 import Logout from "../auth/Logout"
-import SearchForm from "../common/SearchForm";
+import FoodList from "../foods/FoodList"
 import ProfileForm from "../profiles/ProfileForm";
 import SignupForm from "../auth/SignupForm";
 import PrivateRoute from "./PrivateRoute";
@@ -47,7 +47,7 @@ function Routes({ login, signup, logout }) {
           </PrivateRoute>
 
           <PrivateRoute path="/search">
-            <SearchForm />
+            <FoodList />
           </PrivateRoute>
 
           <Redirect to="/" />
