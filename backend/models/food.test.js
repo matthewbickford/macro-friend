@@ -28,6 +28,7 @@ afterAll(commonAfterAll);
 describe("add", function() {
     const newFood = {
         foodName: "banana", 
+        servingQty: 1, 
         servingUnit: 1, 
         servingWeightGrams: 150, 
         calories: 100, 
@@ -41,6 +42,7 @@ describe("add", function() {
         expect(food).toEqual(
             {
                 foodName: "banana", 
+                servingQty: "1", 
                 servingUnit: "1", 
                 servingWeightGrams: "150", 
                 calories: "100", 
@@ -72,7 +74,8 @@ describe("getAll", function() {
         let foods = await Food.getAll();
         expect(foods).toEqual([
             {
-                foodName: "f1", 
+                foodName: "f1",
+                servingQty: "1", 
                 servingUnit: "1", 
                 servingWeightGrams: "100", 
                 calories: "100", 
@@ -83,6 +86,7 @@ describe("getAll", function() {
             },
             {
                 foodName: "f2", 
+                servingQty: "1", 
                 servingUnit: "1", 
                 servingWeightGrams: "200", 
                 calories: "200", 

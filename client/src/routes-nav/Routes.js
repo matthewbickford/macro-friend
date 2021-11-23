@@ -4,8 +4,10 @@ import Homepage from "../homepage/Homepage";
 import LoginForm from "../auth/LoginForm";
 import Logout from "../auth/Logout"
 import FoodList from "../foods/FoodList"
+import FoodDetail from "../foods/FoodDetail";
 import ProfileForm from "../profiles/ProfileForm";
 import SignupForm from "../auth/SignupForm";
+import Log from "../log/Log";
 import PrivateRoute from "./PrivateRoute";
 
 /** Site-wide routes.
@@ -48,6 +50,14 @@ function Routes({ login, signup, logout }) {
 
           <PrivateRoute path="/search">
             <FoodList />
+          </PrivateRoute>
+
+          <PrivateRoute exact path="/food/:name">
+            <FoodDetail />
+          </PrivateRoute>
+
+          <PrivateRoute exact path="/log">
+            <Log />
           </PrivateRoute>
 
           <Redirect to="/" />

@@ -33,4 +33,4 @@ describe("GET search/nutrition/:food", function () {
             .get("/search/nutrition/apple");
         expect(response.statusCode).toEqual(201);
     })
-})
+});

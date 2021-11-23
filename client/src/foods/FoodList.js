@@ -20,14 +20,15 @@ function FoodList() {
   const [foods, setFoods] = useState(null);
 
   useEffect(function getAllFoodsOnMount() {
-    console.debug("foodsList useEffect getAllJobsOnMount");
+    console.debug("foodsList useEffect getAllFoodsOnMount");
     search();
   }, []);
 
   /** Triggered by search form submit; reloads foods. */
   async function search(term) {
-    let foods = await MacroFriendApi.getFoods(term);
-    setFoods(foods);
+    let res = await MacroFriendApi.getFoods(term);
+    setFoods(res);
+    console.log(foods);
   }
 
   if (!foods) return <LoadingSpinner />;

@@ -6,6 +6,7 @@ const {X_APP_ID, X_APP_KEY} = require("../config")
 
 const axios = require("axios");
 const express = require("express");
+const { format } = require("morgan");
 const router = express.Router();
 
 const headers = {
@@ -26,7 +27,19 @@ router.get("/nutrition/:food", async function (req, res, next) {
             "https://trackapi.nutritionix.com/v2/natural/nutrients", 
             data,
             headers )
-        return res.status(201).json(result.data);
+        const nutritionInfo = {
+            name: result.data.foods[0].food_name,
+            serving_qty: result.data.foods[0].serving_qty,
+            serving_unit: result.data.foods[0].serving_unit,
+            serving_weight_grams: result.data.foods[0].serving_weight_grams,
+            calories: result.data.foods[0].nf_calories,
+            fat: result.data.foods[0].nf_total_fat,
+            carbs: result.data.foods[0].nf_total_carbohydrate,
+            protein: result.data.foods[0].nf_protein,
+            photo: result.data.foods[0].photo,
+            alt_measures: result.data.foods[0].alt_measures
+        }
+        return res.status(201).json(nutritionInfo);
     } catch (err) {
         return next(err)
     }

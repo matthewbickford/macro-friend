@@ -11,6 +11,7 @@ CREATE TABLE users (
 CREATE TABLE foods (
   id SERIAL PRIMARY KEY,
   food_name TEXT NOT NULL NOT NULL,
+  serving_quantity NUMERIC,
   serving_unit TEXT,
   serving_weight_grams NUMERIC,
   nf_calories NUMERIC,

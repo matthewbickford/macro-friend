@@ -7,4 +7,6 @@ MacroFriend uses the Nutritionix free tier API to source nutritional information
 
 ## Requirements
 
-Macrofriend runs uses Node.js and Postgres. In order to run the application locally you will need t
+Macrofriend runs uses Node.js and Postgres. In order to run the application locally you will need to have Postgres 13 and Node.js 14 or greater installed.
+
+psql < macro-friend.sql

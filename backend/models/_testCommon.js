@@ -7,8 +7,6 @@ const testFoodIds = [];
 
 async function commonBeforeAll() {
 
-  console.log(process.env);
-
   // noinspection SqlWithoutWhere
   await db.query("DELETE FROM users");
   await db.query("DELETE FROM foods");
@@ -30,14 +28,15 @@ async function commonBeforeAll() {
 
   const foodResults = await db.query(`
       INSERT INTO foods (food_name,
+                        serving_quantity,
                         serving_unit,
                         serving_weight_grams,
                         nf_calories,
                         nf_total_fat,
                         nf_total_carbohydrate,
                         nf_protein)
-      VALUES ('f1', 1, 100, 100, 10, 10, 10),
-             ('f2', 1, 200, 200, 20, 20, 20)
+      VALUES ('f1', 1, 1, 100, 100, 10, 10, 10),
+             ('f2', 1, 1, 200, 200, 20, 20, 20)
       RETURNING id`);
       testFoodIds.splice(0, 0, ...foodResults.rows.map(r => r.id));
 

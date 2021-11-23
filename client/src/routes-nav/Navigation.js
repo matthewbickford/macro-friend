@@ -29,8 +29,8 @@ function Navigation() {
             </NavLink>
           </li>
           <li className="nav-item mr-4">
-            <NavLink className="nav-link" to="/registation">
-              Admin Page
+            <NavLink className="nav-link" to="/log">
+              Food Log
             </NavLink>
           </li>
         </ul>

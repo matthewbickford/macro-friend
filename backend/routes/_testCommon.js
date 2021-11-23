@@ -2,13 +2,16 @@
 
 const db = require("../db.js");
 const User = require("../models/user");
+const Food = require("../models/food")
 const { createToken } = require("../helpers/tokens");
+const request = require("superagent");
 
 
 async function commonBeforeAll() {
   // noinspection SqlWithoutWhere
   await db.query("DELETE FROM users");
   // noinspection SqlWithoutWhere
+  await db.query("DELETE FROM foods")
 
   await User.register({
     username: "u1",
@@ -37,6 +40,27 @@ async function commonBeforeAll() {
     isAdmin: false,
   });
 
+  await Food.add({
+    foodName: 'f1', 
+    servingQty: 1, 
+    servingUnit: 1, 
+    servingWeightGrams: 100, 
+    calories: 100, 
+    carbs: 10, 
+    fat: 10, 
+    protein: 10
+  });
+
+  await Food.add({
+    foodName: 'f2', 
+    servingQty: 2, 
+    servingUnit: 1, 
+    servingWeightGrams: 200, 
+    calories: 200, 
+    carbs: 20, 
+    fat: 20, 
+    protein: 20
+  });
 }
 
 async function commonBeforeEach() {

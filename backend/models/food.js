@@ -13,13 +13,14 @@ const { response } = require("express");
 
 class Food {
 
-    // Adds food to nutrition log
+    // Adds food to db
     static async add(
-            {foodName, servingUnit, servingWeightGrams, calories, fat, carbs, protein, thumb}) {
+            {foodName, servingQty, servingUnit, servingWeightGrams, calories, fat, carbs, protein, thumb}) {
         if (!foodName) throw new BadRequestError("FoodName required")
         const result = await db.query(
             `INSERT INTO foods
                 (food_name,
+                serving_quantity,
                 serving_unit,
                 serving_weight_grams,
                 nf_calories,
@@ -27,9 +28,10 @@ class Food {
                 nf_total_carbohydrate,
                 nf_protein,
                 thumb)
-            VALUES ($1, $2, $3, $4, $5, $6, $7, $8)
+            VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9)
             RETURNING 
                 food_name as "foodName",
+                serving_quantity as "servingQty",
                 serving_unit as "servingUnit",
                 serving_weight_grams as "servingWeightGrams",
                 nf_calories as "calories",
@@ -37,7 +39,7 @@ class Food {
                 nf_total_carbohydrate as "carbs",
                 nf_protein as "protein",
                 thumb`, 
-            [foodName, servingUnit, servingWeightGrams, calories, fat, carbs, protein, thumb]);
+            [foodName, servingQty, servingUnit, servingWeightGrams, calories, fat, carbs, protein, thumb]);
         const food = result.rows[0];
         return food;
     };
@@ -47,6 +49,7 @@ class Food {
         const result = await db.query(`
             SELECT 
                 food_name as "foodName,
+                serving_quantity as "servingQty",
                 serving_unit as "servingUnit",
                 serving_weight_grams as "servingWeightGrams",
                 nf_calories as "calories",
@@ -67,6 +70,7 @@ class Food {
         const results = await db.query(`
             SELECT 
                 food_name as "foodName",
+                serving_quantity as "servingQty",
                 serving_unit as "servingUnit",
                 serving_weight_grams as "servingWeightGrams",
                 nf_calories as "calories",

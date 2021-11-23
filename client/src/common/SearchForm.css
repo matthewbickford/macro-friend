@@ -2,3 +2,7 @@
   box-shadow: none;
   border-color: #ced4da;
 }
+
+.SearchForm input {
+  margin-bottom: 20px;
+}

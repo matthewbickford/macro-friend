@@ -69,6 +69,27 @@ class MacroFriendApi {
     let res = await this.request(`search/items/${term}`)
     return res;
   }
+
+  /** Retreive nutritional information of a food based on name */
+
+  static async getNutrition(name) {
+    let res = await this.request(`search/nutrition/${name}`)
+    return res;
+  }
+
+  /** Adds one food to the database
+   * Returns {food: [same food object]}
+   */
+
+  static async addFood(data) {
+    let res = await this.request(`foods`, data, "post");
+    return res;
+  }
+
+  static async getAll() {
+    let res = await this.request('foods')
+    return res;
+  }
 }
 
 

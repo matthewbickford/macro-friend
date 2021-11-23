@@ -1,0 +1,39 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "$id": "http://example.com/foodNew.json",
+    "type": "object",
+    "properties": {
+      "foodName": {
+        "type": "string"
+      },
+      "servingQty": {
+        "type": "number"
+      },
+      "servingUnit": {
+        "type": "string"
+      },
+      "servingWeightGrams": {
+        "type": "number"
+      },
+      "calories": {
+          "type": "number"
+      },
+      "carbs": {
+        "type": "number"
+      },
+      "fats": {
+        "type": "number"
+      },
+      "protein": {
+        "type": "number"
+      },
+      "thumb": {
+        "type": "string"
+      }
+    },
+    "additionalProperties": false,
+    "required": [
+      "foodName"
+    ]
+  }
+  

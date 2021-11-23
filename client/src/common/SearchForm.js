@@ -41,7 +41,7 @@ function SearchForm({ searchFor }) {
               onChange={handleChange}
           />
           <button type="submit" className="btn btn-lg btn-primary">
-            Submit
+            Search
           </button>
         </form>
       </div>
