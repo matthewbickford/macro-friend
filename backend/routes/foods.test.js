@@ -25,7 +25,7 @@ afterAll(commonAfterAll);
 /************************************** POST /foods */
 
 describe("POST /foods", function () {
-    test("works for admins: create new food", async function () {
+    test("works create new food", async function () {
       const resp = await request(app)
           .post("/foods")
           .send({
@@ -34,23 +34,26 @@ describe("POST /foods", function () {
             servingUnit: "1", 
             servingWeightGrams: 150, 
             calories: 100, 
-            fats: 0, 
+            fat: 0, 
             carbs: 25, 
             protein: 0,
-            thumb: "thumbnail"
+            thumb: "thumbnail",
+            username: "u1"
   }).set("authorization", `Bearer ${adminToken}`);
       expect(resp.statusCode).toEqual(201);
       expect(resp.body).toEqual({
         food: {
+          "id": expect.any(Number),
           "foodName": "banana",
           "servingQty": "1",
           "servingUnit": "1",
           "servingWeightGrams": "150",
           "calories": "100",
-          "fat": null,
+          "fat": '0',
           "carbs": "25",
           "protein": "0",
-          "thumb": "thumbnail"
+          "thumb": "thumbnail",
+          "username": "u1"
         }
       });
     });
@@ -115,11 +118,11 @@ describe("GET /foods", function() {
     const resp = await request(app)
     .get("/foods")
     .set("authorization", `Bearer ${adminToken}`);
-    console.log(resp.body)
     expect(resp.statusCode).toEqual(200);
     expect(resp.body).toEqual({
       foods: [
         {
+          id: expect.any(Number),
           foodName: 'f1',
           servingQty: '1',
           servingUnit: '1',
@@ -128,9 +131,11 @@ describe("GET /foods", function() {
           fat: '10',
           carbs: '10',
           protein: '10',
-          thumb: null
+          thumb: null,
+          username: "u1"
         },
         {
+          id: expect.any(Number),
           foodName: 'f2',
           servingQty: '2',
           servingUnit: '1',
@@ -139,9 +144,29 @@ describe("GET /foods", function() {
           fat: '20',
           carbs: '20',
           protein: '20',
-          thumb: null
+          thumb: null,
+          username: "u1"
         }
       ]
     });
   }); 
+});
+
+
+/************************************** DELETE /foods/:id */
+
+describe("Delete /foods/:id", function() {
+  test("works", async function() {
+    let result = await request(app)
+    .delete('/foods/1')
+    .set("authorization", `Bearer ${u1Token}`);
+    expect(result.statusCode).toEqual(200);
+  });
+
+  test("Does not work with bad id", async function() {
+    let result = await request(app)
+    .delete('/foods/666')
+    .set("authorization", `Bearer ${u1Token}`);
+    expect(result.statusCode).toEqual(404);
+  });
 });

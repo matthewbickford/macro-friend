@@ -38,7 +38,7 @@ function FoodList() {
         <SearchForm searchFor={search} />
         {foods.length
             ? <FoodCardList foods={foods} />
-            : <p className="lead">Sorry, no results were found!</p>
+            : <p className="lead">Use search feature above to find foods to log</p>
         }
       </div>
   );

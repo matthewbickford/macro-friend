@@ -1,0 +1,22 @@
+.SignupForm {
+  /* put around the vertical center of page */
+  height: calc(100vh - 150px);
+  display: flex;
+  /* align-items: center; */
+  justify-content: center;
+  overflow: auto;
+}
+
+.LoginForm {
+    /* put around the vertical center of page */
+    height: calc(100vh - 150px);
+    display: flex;
+    /* align-items: center; */
+    justify-content: center;
+    overflow: auto;
+  }
+
+.card {
+    margin-bottom: 30px;
+}
+

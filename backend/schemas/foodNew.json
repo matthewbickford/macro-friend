@@ -21,13 +21,16 @@
       "carbs": {
         "type": "number"
       },
-      "fats": {
+      "fat": {
         "type": "number"
       },
       "protein": {
         "type": "number"
       },
       "thumb": {
+        "type": "string"
+      },
+      "username": {
         "type": "string"
       }
     },

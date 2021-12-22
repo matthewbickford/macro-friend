@@ -34,9 +34,10 @@ async function commonBeforeAll() {
                         nf_calories,
                         nf_total_fat,
                         nf_total_carbohydrate,
-                        nf_protein)
-      VALUES ('f1', 1, 1, 100, 100, 10, 10, 10),
-             ('f2', 1, 1, 200, 200, 20, 20, 20)
+                        nf_protein, 
+                        username)
+      VALUES ('f1', 1, 1, 100, 100, 10, 10, 10, 'u1'),
+             ('f2', 1, 1, 200, 200, 20, 20, 20, 'u2')
       RETURNING id`);
       testFoodIds.splice(0, 0, ...foodResults.rows.map(r => r.id));
 
@@ -58,6 +59,7 @@ async function commonAfterAll() {
   await db.query("DELETE FROM users");
   await db.query("DELETE FROM foods");
   await db.query("DELETE FROM user_foods");
+  await db.query("ALTER SEQUENCE foods_id_seq RESTART WITH 1")
   await db.end();
 };
 

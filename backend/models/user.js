@@ -228,9 +228,11 @@ class User {
 
     if (!user) throw new NotFoundError(`No username: ${username}`);
 
-    await db.query(
+    const userFoodsRes = await db.query(
       `INSERT INTO user_foods (username, food_id)
        VALUES ($1, $2)`, [username, foodId]);
+
+    return userFoodsRes.rows[0];
   };
 
 };

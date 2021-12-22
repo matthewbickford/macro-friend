@@ -82,14 +82,29 @@ class MacroFriendApi {
    */
 
   static async addFood(data) {
-    let res = await this.request(`foods`, data, "post");
-    return res;
+    let foodRes = await this.request(`foods`, data, "post");
+    return foodRes;
   }
+
+  /** gets all foods associated with a foodname from db */
 
   static async getAll() {
     let res = await this.request('foods')
     return res;
   }
+
+  /** remove a food item from db by id number */
+  static async remove(id, data) {
+    let res = await this.request(`foods/${id}`, data, "delete")
+    return res;
+  }
+
+  /** remove all fods from log */
+  static async reset(username, data) {
+    let res = await this.request(`foods/reset/${username}`, data, "delete");
+    return res;
+  }
+
 }
 
 

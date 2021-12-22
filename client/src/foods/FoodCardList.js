@@ -1,5 +1,6 @@
 import React from "react";
 import FoodCard from "./FoodCard";
+import "./FoodCard.css";
 
 /** Show list of food cards.
  *
@@ -16,8 +17,10 @@ function FoodCardList({ foods }) {
 
   return (
       <div className="FoodCardList">
+        <ul className="wrapper">
         {foods.map(food => (
-            <FoodCard
+          <li>
+              <FoodCard
                 key={food.tag_id}
                 id={food.tag_id}
                 name={food.food_name}
@@ -25,7 +28,10 @@ function FoodCardList({ foods }) {
                 serving_qty={food.serving_qty}
                 thumb={food.photo.thumb}
             />
+          </li>
         ))}
+        </ul>
+
       </div>
   );
 }

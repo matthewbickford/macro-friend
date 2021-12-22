@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useHistory } from "react-router-dom";
 import Alert from "../common/Alert";
+import "./auth.css"
 
 /** Signup form.
  *
@@ -14,7 +15,7 @@ import Alert from "../common/Alert";
  */
 
 function SignupForm({ signup }) {
-  const histroy = useHistory();
+  const history = useHistory();
   const [formData, setFormData] = useState({
     username: "",
     password: "",
@@ -33,14 +34,14 @@ function SignupForm({ signup }) {
 
   /** Handle form submit:
    *
-   * Calls login func prop and, if successful, redirect to /companies.
+   * Calls login func prop and, if successful, redirect to /.
    */
 
   async function handleSubmit(evt) {
     evt.preventDefault();
     let result = await signup(formData);
     if (result.success) {
-      histroy.push("/companies");
+      history.push("/");
     } else {
       setFormErrors(result.errors);
     }

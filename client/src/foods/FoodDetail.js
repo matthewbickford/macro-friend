@@ -1,11 +1,13 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useContext } from "react";
 import { useParams, useHistory } from "react-router";
 import MacroFriendApi from "../api/api";
 import LoadingSpinner from "../common/LoadingSpinner";
+import UserContext from "../auth/UserContext";
 import "./FoodDetail.css"
 
 function FoodDetail() {
 
+    const { currentUser } = useContext(UserContext); 
     const history = useHistory();
     const { name } = useParams();
     console.debug("FoodDetail", "name=", name)
@@ -28,9 +30,10 @@ function FoodDetail() {
             servingWeightGrams: parseInt(nutrition.serving_weight_grams) * servings,
             calories: parseInt(nutrition.calories) * servings,
             carbs: parseInt(nutrition.carbs) * servings,
-            fats: parseInt(nutrition.fat) * servings,
+            fat: parseInt(nutrition.fat) * servings,
             protein: parseInt(nutrition.protein) * servings,
-            thumb: nutrition.photo.highres
+            thumb: nutrition.photo.highres,
+            username: currentUser.username
         }
         await MacroFriendApi.addFood(data);
         history.push("/log");

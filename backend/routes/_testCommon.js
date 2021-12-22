@@ -48,7 +48,8 @@ async function commonBeforeAll() {
     calories: 100, 
     carbs: 10, 
     fat: 10, 
-    protein: 10
+    protein: 10,
+    username: "u1"
   });
 
   await Food.add({
@@ -59,7 +60,8 @@ async function commonBeforeAll() {
     calories: 200, 
     carbs: 20, 
     fat: 20, 
-    protein: 20
+    protein: 20,
+    username: "u1"
   });
 }
 
@@ -73,11 +75,12 @@ async function commonAfterEach() {
 
 async function commonAfterAll() {
   await db.query("DELETE FROM users");
+  await db.query("DELETE FROM foods")
+  await db.query("ALTER SEQUENCE foods_id_seq RESTART WITH 1")
   try {
     await db.end();
-    console.log("DB has disconnected")
   } catch(e) {
-    console.log("Error during disconnection", e.stack)
+    console.log(e.stack)
   }
 }
 

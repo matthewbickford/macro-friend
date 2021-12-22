@@ -18,13 +18,14 @@ CREATE TABLE foods (
   nf_total_fat NUMERIC,
   nf_total_carbohydrate NUMERIC,
   nf_protein NUMERIC,
-  thumb TEXT
+  thumb TEXT,
+  username VARCHAR(25) REFERENCES users on Delete CASCADE
 );
 
 CREATE TABLE user_foods (
   username VARCHAR(25)
-    REFERENCES users ON DELETE CASCADE,
+    REFERENCES users on Delete CASCADE,
   food_id INTEGER
-    REFERENCES foods ON DELETE CASCADE,
+    REFERENCES foods on Delete CASCADE,
   PRIMARY KEY (username, food_id)
 );
